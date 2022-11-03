@@ -9,7 +9,14 @@ const getters = {
   // totalPrice
 
   totalPrice(state) {
-    return state.cartProducts.reduce((sum, prod) => sum + prod.totalPrice, 0);
+    let totalPrice = state.cartProducts.reduce(
+      (sum, prod) => sum + prod.totalPrice,
+      0
+    );
+
+    totalPrice = Number(totalPrice).toFixed(2);
+    console.log(totalPrice);
+    return totalPrice;
   }
 };
 const mutations = {
@@ -21,6 +28,7 @@ const mutations = {
       prod.count += 1;
       prod.isChecked = true;
       prod.totalPrice = prod.count * prod.price;
+      prod.totalPrice.toFixed(2);
     } else {
       state.cartProducts.push({
         ...product,
@@ -38,8 +46,8 @@ const mutations = {
   },
   changeProductCount(state, prodId) {
     const prod = state.cartProducts.find(item => item.id === prodId);
-    if(prod) {
-      prod.totalPrice = parseFloat(prod.price * prod.count)
+    if (prod) {
+      prod.totalPrice = Number((prod.price * prod.count).toFixed(2));
     }
   }
 };

@@ -29,7 +29,7 @@
         >去购物车</el-button
       >
     </div>
-    <el-badge :value="5" class="item" slot="reference">
+    <el-badge :value="totalCount" class="item" slot="reference">
       <el-button type="primary">我的购物车</el-button>
     </el-badge>
   </el-popover>
